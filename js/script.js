@@ -8,9 +8,9 @@
 /* global TextDecoderStream */
 'use strict';
 
-import * as THREE from 'https://threejs.org/build/three.module.js';
-import {OrbitControls} from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
-import {OBJLoader2} from 'https://threejs.org/examples/jsm/loaders/OBJLoader2.js';
+import * as THREE from 'https://unpkg.com/three@0.122.0/build/three.module.js';
+import {OrbitControls} from 'https://unpkg.com/three@0.122.0/examples/jsm/controls/OrbitControls.js';
+import {OBJLoader2} from 'https://unpkg.com/three@0.122.0/examples/jsm/loaders/OBJLoader2.js';
 
 let port;
 let reader;
@@ -84,7 +84,7 @@ async function connect() {
   // - Request a port and open a connection.
   port = await navigator.serial.requestPort();
   // - Wait for the port to open.toggleUIConnected
-  await port.open({ baudrate: baudRate.value });
+  await port.open({ baudRate: baudRate.value });
 
   let decoder = new TextDecoderStream();
   inputDone = port.readable.pipeTo(decoder.writable);
@@ -298,7 +298,7 @@ class LineBreakTransformer {
     this.container = lines.pop();
     lines.forEach(line => {
       controller.enqueue(line)
-      logData(line);
+      // logData(line);
     });
   }
 
